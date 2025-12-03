@@ -3,7 +3,7 @@ package com.carignano.nasa_exercise.service.asteroid;
 import com.carignano.nasa_exercise.dto.local.AsteroidPath;
 import com.carignano.nasa_exercise.dto.nasa.AsteroidInfoNasa;
 import com.carignano.nasa_exercise.dto.nasa.CloseApproachData;
-import com.carignano.nasa_exercise.service.client.ClientService;
+import com.carignano.nasa_exercise.service.client.NasaNasaClientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -15,11 +15,11 @@ import java.util.List;
 @Service
 public class AsteroidService implements IAsteroidService{
 
-    private final ClientService clientService;
+    private final NasaNasaClientService nasaClientService;
     private static final Logger log = LoggerFactory.getLogger(AsteroidService.class);
 
-    public AsteroidService(ClientService clientService) {
-        this.clientService = clientService;
+    public AsteroidService(NasaNasaClientService nasaClientService) {
+        this.nasaClientService = nasaClientService;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class AsteroidService implements IAsteroidService{
 
         log.info("Filtering asteroidId: {} paths fromDate: {} toDate: {}",asteroidId, fromDate, toDate);
 
-        AsteroidInfoNasa asteroidInfoNasa = clientService.getAsteroidInfo(asteroidId);
+        AsteroidInfoNasa asteroidInfoNasa = nasaClientService.getAsteroidInfo(asteroidId);
         List<AsteroidPath> ret;
 
         ret = filterAsteroidPaths(asteroidInfoNasa, fromDate, toDate);

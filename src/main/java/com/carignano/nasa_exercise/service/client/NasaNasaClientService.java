@@ -9,16 +9,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
 @Component
-public class ClientService implements IClientService {
+public class NasaNasaClientService implements INasaClientService {
 
     @Value("${nasaapi.asteroid.lookup}")
     private String getAsteroidInfoUrl;
 
-    private static final Logger log = LoggerFactory.getLogger(ClientService.class);
+    private static final Logger log = LoggerFactory.getLogger(NasaNasaClientService.class);
 
     private final RestClient restClient;
 
-    public ClientService(RestClient restClient){
+    public NasaNasaClientService(RestClient restClient){
         this.restClient = restClient;
     }
 
