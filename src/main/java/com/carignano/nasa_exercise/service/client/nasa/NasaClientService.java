@@ -1,4 +1,4 @@
-package com.carignano.nasa_exercise.service.client;
+package com.carignano.nasa_exercise.service.client.nasa;
 
 import com.carignano.nasa_exercise.dto.nasa.AsteroidInfoNasa;
 import org.slf4j.Logger;
@@ -9,24 +9,24 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
 @Component
-public class NasaNasaClientService implements INasaClientService {
+public class NasaClientService implements INasaClientService {
 
     @Value("${nasaapi.asteroid.lookup}")
     private String getAsteroidInfoUrl;
 
-    private static final Logger log = LoggerFactory.getLogger(NasaNasaClientService.class);
+    private static final Logger log = LoggerFactory.getLogger(NasaClientService.class);
 
-    private final RestClient restClient;
+    private final RestClient nasaRestClient;
 
-    public NasaNasaClientService(RestClient restClient){
-        this.restClient = restClient;
+    public NasaClientService(RestClient nasaRestClient){
+        this.nasaRestClient = nasaRestClient;
     }
 
     @Override
     public AsteroidInfoNasa getAsteroidInfo(Long asteroidId) {
         log.info("Calling external api: {} with accountId: {}",getAsteroidInfoUrl, asteroidId);
 
-        return restClient.get()
+        return nasaRestClient.get()
                 .uri(getAsteroidInfoUrl, asteroidId)
                 .retrieve()
                 .toEntity(new ParameterizedTypeReference<AsteroidInfoNasa>() {})

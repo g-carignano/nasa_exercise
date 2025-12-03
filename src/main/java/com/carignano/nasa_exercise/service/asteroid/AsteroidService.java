@@ -3,7 +3,7 @@ package com.carignano.nasa_exercise.service.asteroid;
 import com.carignano.nasa_exercise.dto.local.AsteroidPath;
 import com.carignano.nasa_exercise.dto.nasa.AsteroidInfoNasa;
 import com.carignano.nasa_exercise.dto.nasa.CloseApproachData;
-import com.carignano.nasa_exercise.service.client.NasaNasaClientService;
+import com.carignano.nasa_exercise.service.client.nasa.NasaClientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -15,10 +15,10 @@ import java.util.List;
 @Service
 public class AsteroidService implements IAsteroidService{
 
-    private final NasaNasaClientService nasaClientService;
+    private final NasaClientService nasaClientService;
     private static final Logger log = LoggerFactory.getLogger(AsteroidService.class);
 
-    public AsteroidService(NasaNasaClientService nasaClientService) {
+    public AsteroidService(NasaClientService nasaClientService) {
         this.nasaClientService = nasaClientService;
     }
 

@@ -15,12 +15,12 @@ import java.net.URI;
 import java.nio.charset.StandardCharsets;
 
 @Configuration
-public class NasaConfig {
+public class ProjectConfig {
 
-    private static final Logger log = LoggerFactory.getLogger(NasaConfig.class);
+    private static final Logger log = LoggerFactory.getLogger(ProjectConfig.class);
 
     @Bean
-    public RestClient restClient(@Value("${nasa.base-url}") String baseUrl, @Value("${nasa.api-key}") String apiKey){
+    public RestClient nasaRestClient(@Value("${nasa.base-url}") String baseUrl, @Value("${nasa.api-key}") String apiKey){
         return RestClient.builder()
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .baseUrl(baseUrl)
@@ -36,6 +36,21 @@ public class NasaConfig {
                     log.info("Serialized body: " + new String(body, StandardCharsets.UTF_8));
 
                     request = ClientHttpRequestWrapper.replaceUri(request, uriWithKey);
+                    System.out.println("REQUEST URL: " + request.getURI());
+                    return execution.execute(request, body);
+                })
+                .build();
+    }
+
+    @Bean
+    public RestClient awcRestClient(@Value("${awc.base-url}") String baseUrl){
+        return RestClient.builder()
+                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .baseUrl(baseUrl)
+                .requestInterceptor((request, body, execution) -> {
+
+                    log.info("Serialized body: " + new String(body, StandardCharsets.UTF_8));
+
                     System.out.println("REQUEST URL: " + request.getURI());
                     return execution.execute(request, body);
                 })
