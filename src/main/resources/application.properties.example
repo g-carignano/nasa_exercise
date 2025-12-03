@@ -5,4 +5,4 @@ nasa.base-url=https://api.nasa.gov
 nasa.api-key=
 nasa.auth-schema=
 
-nasaapi.asteroid.lookup=/neo/rest/v1/neo
+nasaapi.asteroid.lookup=/neo/rest/v1/neo/{asteroidId}
