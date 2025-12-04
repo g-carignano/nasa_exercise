@@ -1,0 +1,18 @@
+package com.carignano.nasa_exercise.dto.local;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class StationInfo {
+
+    private String id;
+    private String site;
+    private String state;
+    private String country;
+    private Double latitude;
+    private Double longitude;
+    private Double elevation;
+
+}
