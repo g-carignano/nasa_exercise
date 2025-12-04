@@ -3,6 +3,12 @@ spring.application.name=nasa_exercise
 # NASA api
 nasa.base-url=https://api.nasa.gov
 nasa.api-key=
-nasa.auth-schema=
 
 nasaapi.asteroid.lookup=/neo/rest/v1/neo/{asteroidId}
+
+#Aviation Weather Center api
+awc.base-url=https://aviationweather.gov
+awc.station.info=/api/data/stationinfo?ids={stationId}&format=json
+awc.station.airportinfoarea=/api/data/stationinfo?ids={airportId}&bbox={lat0}%2C-{lon0}%{lat1}%2C-{lon1}&format=json
+awc.airport.info=/api/data/airport?ids={airportId}&format=json
+awc.airport.stationinfoarea=/api/data/airport?ids={stationId}&bbox={lat0}%2C-{lon0}%{lat1}%2C-{lon1}&format=json
