@@ -1,8 +1,7 @@
 package com.carignano.nasa_exercise.config;
 
 import com.carignano.nasa_exercise.helper.ClientHttpRequestWrapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,9 +14,8 @@ import java.net.URI;
 import java.nio.charset.StandardCharsets;
 
 @Configuration
-public class ProjectConfig {
-
-    private static final Logger log = LoggerFactory.getLogger(ProjectConfig.class);
+@Slf4j
+public class NasaConfig {
 
     @Bean
     public RestClient nasaRestClient(@Value("${nasa.base-url}") String baseUrl, @Value("${nasa.api-key}") String apiKey){
@@ -42,19 +40,6 @@ public class ProjectConfig {
                 .build();
     }
 
-    @Bean
-    public RestClient awcRestClient(@Value("${awc.base-url}") String baseUrl){
-        return RestClient.builder()
-                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .baseUrl(baseUrl)
-                .requestInterceptor((request, body, execution) -> {
 
-                    log.info("Serialized body: " + new String(body, StandardCharsets.UTF_8));
-
-                    System.out.println("REQUEST URL: " + request.getURI());
-                    return execution.execute(request, body);
-                })
-                .build();
-    }
 
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class StationInfo {
+public class StationInfoDTO {
 
     private String id;
     private String icaoId;

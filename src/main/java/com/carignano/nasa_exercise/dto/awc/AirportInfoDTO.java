@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class AirportInfo {
+public class AirportInfoDTO {
 
     private String icaoId;
     private String iataId;
@@ -30,6 +30,6 @@ public class AirportInfo {
     private String beacon;
     private String freqs;
     private String priority;
-    private List<Runway> runways;
+    private List<RunwayDTO> runwayDTOS;
 
 }

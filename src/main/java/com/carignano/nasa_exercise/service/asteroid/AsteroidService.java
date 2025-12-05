@@ -4,8 +4,8 @@ import com.carignano.nasa_exercise.dto.local.AsteroidPath;
 import com.carignano.nasa_exercise.dto.nasa.AsteroidInfoNasa;
 import com.carignano.nasa_exercise.dto.nasa.CloseApproachData;
 import com.carignano.nasa_exercise.service.client.nasa.NasaClientService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -13,14 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class AsteroidService implements IAsteroidService{
 
     private final NasaClientService nasaClientService;
-    private static final Logger log = LoggerFactory.getLogger(AsteroidService.class);
-
-    public AsteroidService(NasaClientService nasaClientService) {
-        this.nasaClientService = nasaClientService;
-    }
 
     @Override
     public List<AsteroidPath> getAsteroidPaths(Long asteroidId, LocalDate fromDate, LocalDate toDate) {

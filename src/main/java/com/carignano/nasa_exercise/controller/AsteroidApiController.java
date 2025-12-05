@@ -5,6 +5,7 @@ import com.carignano.nasa_exercise.dto.local.AsteroidPath;
 import com.carignano.nasa_exercise.service.asteroid.IAsteroidService;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,13 +17,10 @@ import java.util.List;
 @RestController
 @Validated
 @RequestMapping("api/asteroids")
+@RequiredArgsConstructor
 public class AsteroidApiController {
 
     private final IAsteroidService asteroidService;
-
-    public AsteroidApiController(IAsteroidService asteroidService) {
-        this.asteroidService = asteroidService;
-    }
 
     @GetMapping("{asteroidId}/paths")
     public ResponseEntity<List<AsteroidPath>> getAsteroidPaths(@PathVariable @Positive@NotNull Long asteroidId, @RequestParam(required = false) @DateTimeFormat(pattern = ProjectConstants.DateFormat.STANDARD_DATE_FORMAT) LocalDate fromDate, @RequestParam(required = false) @DateTimeFormat(pattern = ProjectConstants.DateFormat.STANDARD_DATE_FORMAT) LocalDate toDate){

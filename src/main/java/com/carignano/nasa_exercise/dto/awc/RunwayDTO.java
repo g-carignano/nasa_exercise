@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Runway {
+public class RunwayDTO {
 
     private String id;
     private String dimension;
