@@ -1,12 +1,12 @@
 package com.carignano.nasa_exercise.service.awc.airport;
 
 import com.carignano.nasa_exercise.dto.awc.AirportInfoDTO;
-import com.carignano.nasa_exercise.dto.awc.StationInfoDTO;
 import com.carignano.nasa_exercise.dto.local.StationInfo;
 import com.carignano.nasa_exercise.mapper.StationInfoMapper;
 import com.carignano.nasa_exercise.service.client.awc.IAwcClientService;
 import com.carignano.nasa_exercise.util.BoxCoordinates;
 import com.carignano.nasa_exercise.util.CoordinatesCalculator;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,7 @@ public class AirportService implements IAirportService{
     private final StationInfoMapper stationInfoMapper;
 
     @Override
-    public List<StationInfo> getClosestByStations(String airportId, Double range) {
+    public List<StationInfo> getClosestByStations(@NonNull String airportId, @NonNull Double range) {
         BoxCoordinates boxCoordinatesAirport;
         AirportInfoDTO airportInfoDTO;
 
