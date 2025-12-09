@@ -1,10 +1,12 @@
 package com.carignano.nasa_exercise.dto.local;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class StationInfo {
 
     private String id;
@@ -13,6 +15,6 @@ public class StationInfo {
     private String country;
     private Double latitude;
     private Double longitude;
-    private Double elevation;
+    private Integer elevation;
 
 }

@@ -1,5 +1,6 @@
 package com.carignano.nasa_exercise.dto.awc;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,6 +8,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class AirportInfoDTO {
 
     private String icaoId;
