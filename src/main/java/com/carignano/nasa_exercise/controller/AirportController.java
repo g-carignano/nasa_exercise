@@ -2,6 +2,7 @@ package com.carignano.nasa_exercise.controller;
 
 import com.carignano.nasa_exercise.constants.ProjectConstants;
 import com.carignano.nasa_exercise.dto.local.StationInfo;
+import com.carignano.nasa_exercise.dto.response.NasaAwcResponse;
 import com.carignano.nasa_exercise.service.awc.airport.IAirportService;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -24,11 +25,11 @@ public class AirportController {
     }
 
     @GetMapping("{airportId}/stations")
-    public ResponseEntity<List<StationInfo>> getAsteroidPaths(@PathVariable @NotNull String airportId, @RequestParam(required = false) Double closestBy){
+    public ResponseEntity<NasaAwcResponse<List<StationInfo>>> getAsteroidPaths(@PathVariable @NotNull String airportId, @RequestParam(required = false) Double closestBy){
         closestBy = closestBy == null ? 0 : closestBy;
 
         List<StationInfo> ret = airportService.getClosestByStations(airportId,closestBy);
 
-        return ResponseEntity.ok(ret);
+        return ResponseEntity.ok(new NasaAwcResponse<>(ret,null));
     }
 }
