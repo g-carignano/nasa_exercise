@@ -3,6 +3,7 @@ package com.carignano.nasa_exercise.service.asteroid;
 import com.carignano.nasa_exercise.dto.local.AsteroidPath;
 import com.carignano.nasa_exercise.dto.nasa.AsteroidInfoNasa;
 import com.carignano.nasa_exercise.dto.nasa.CloseApproachData;
+import com.carignano.nasa_exercise.exception.custom.InvalidDataInputException;
 import com.carignano.nasa_exercise.service.client.nasa.NasaClientService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,9 @@ public class AsteroidService implements IAsteroidService{
 
     @Override
     public List<AsteroidPath> getAsteroidPaths(Long asteroidId, LocalDate fromDate, LocalDate toDate) {
+
+        if(fromDate.isAfter(toDate))
+            throw new InvalidDataInputException("toDate is smaller then fromDate");
 
         log.info("Filtering asteroidId: {} paths fromDate: {} toDate: {}",asteroidId, fromDate, toDate);
 

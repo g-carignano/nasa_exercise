@@ -2,6 +2,7 @@ package com.carignano.nasa_exercise.service.awc.airport;
 
 import com.carignano.nasa_exercise.dto.awc.AirportInfoDTO;
 import com.carignano.nasa_exercise.dto.local.StationInfo;
+import com.carignano.nasa_exercise.exception.custom.InvalidDataInputException;
 import com.carignano.nasa_exercise.mapper.StationInfoMapper;
 import com.carignano.nasa_exercise.service.client.awc.IAwcClientService;
 import com.carignano.nasa_exercise.util.BoxCoordinates;
@@ -23,6 +24,9 @@ public class AirportService implements IAirportService{
     public List<StationInfo> getClosestByStations(@NonNull String airportId, @NonNull Double range) {
         BoxCoordinates boxCoordinatesAirport;
         AirportInfoDTO airportInfoDTO;
+
+        if(!(range > 0))
+            throw new InvalidDataInputException("Range is smaller then 0! Range must be greater then 0");
 
         airportInfoDTO = awcClientService.getAirportInfo(airportId);
 
