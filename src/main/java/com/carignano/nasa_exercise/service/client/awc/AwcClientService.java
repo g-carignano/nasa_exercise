@@ -2,6 +2,8 @@ package com.carignano.nasa_exercise.service.client.awc;
 
 import com.carignano.nasa_exercise.dto.awc.AirportInfoDTO;
 import com.carignano.nasa_exercise.dto.awc.StationInfoDTO;
+import com.carignano.nasa_exercise.exception.custom.NoAirportFoundException;
+import com.carignano.nasa_exercise.exception.custom.NoStationFoundException;
 import com.carignano.nasa_exercise.util.BoxCoordinates;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,9 +57,9 @@ public class AwcClientService implements IAwcClientService {
                 .toEntity(new ParameterizedTypeReference<List<AirportInfoDTO>>() {})
                 .getBody();
 
-        if(airportInfoDTOList.size() <= 0){
+        if(airportInfoDTOList == null || airportInfoDTOList.isEmpty()){
             log.error("No airport with id: {} was found!", airportid);
-            throw new RuntimeException("No airport with id:" + airportid + " was found!");
+            throw new NoAirportFoundException(airportid);
         }
 
         return airportInfoDTOList.get(0);
@@ -84,9 +86,9 @@ public class AwcClientService implements IAwcClientService {
                 .toEntity(new ParameterizedTypeReference<List<StationInfoDTO>>() {})
                 .getBody();
 
-        if(stationInfoDTOList.size() <= 0){
+        if(stationInfoDTOList == null || stationInfoDTOList.isEmpty()){
             log.error("No station with id: {} was found!", stationId);
-            throw new RuntimeException("No station with id:" + stationId + " was found!");
+            throw new NoStationFoundException(stationId);
         }
 
         return stationInfoDTOList.get(0);
