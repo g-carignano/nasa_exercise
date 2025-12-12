@@ -7,6 +7,7 @@ import com.carignano.nasa_exercise.exception.custom.InvalidDataInputException;
 import com.carignano.nasa_exercise.service.client.nasa.NasaClientService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -21,6 +22,7 @@ public class AsteroidService implements IAsteroidService{
     private final NasaClientService nasaClientService;
 
     @Override
+    @Cacheable(cacheNames = "asteroidPaths")
     public List<AsteroidPath> getAsteroidPaths(Long asteroidId, LocalDate fromDate, LocalDate toDate) {
 
         if(fromDate.isAfter(toDate))

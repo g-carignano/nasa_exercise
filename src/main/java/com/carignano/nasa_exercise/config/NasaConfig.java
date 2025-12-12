@@ -34,7 +34,7 @@ public class NasaConfig {
                     log.info("Serialized body: " + new String(body, StandardCharsets.UTF_8));
 
                     request = ClientHttpRequestWrapper.replaceUri(request, uriWithKey);
-                    System.out.println("REQUEST URL: " + request.getURI());
+                    log.info("REQUEST URL: " + request.getURI());
                     return execution.execute(request, body);
                 })
                 .build();

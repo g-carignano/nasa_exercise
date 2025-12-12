@@ -8,6 +8,7 @@ import com.carignano.nasa_exercise.service.client.awc.IAwcClientService;
 import com.carignano.nasa_exercise.util.BoxCoordinates;
 import com.carignano.nasa_exercise.util.CoordinatesCalculator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +20,8 @@ public class StationService implements IStationService {
     private final AirportInfoMapper airportInfoMapper;
 
     @Override
-    public List<AirportInfo> getClosestByStations(String stationId, Double range) {
+    @Cacheable( cacheNames = "closestAirportsByStation")
+    public List<AirportInfo> getClosestByAirports(String stationId, Double range) {
         BoxCoordinates boxCoordinatesStation;
         StationInfoDTO stationInfoDTO;
 
