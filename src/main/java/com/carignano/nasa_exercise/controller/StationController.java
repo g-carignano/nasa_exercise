@@ -23,10 +23,10 @@ public class StationController {
     }
 
     @GetMapping("{stationId}/airports")
-    public ResponseEntity<NasaAwcResponse<List<AirportInfo>>> getAsteroidPaths(@PathVariable @NotNull String stationId, @RequestParam(required = false) Double closestBy){
+    public ResponseEntity<NasaAwcResponse<List<AirportInfo>>> getClosestAirports(@PathVariable @NotNull String stationId, @RequestParam(required = false) Double closestBy){
         closestBy = closestBy == null ? 0 : closestBy;
 
-        List<AirportInfo> ret = stationService.getClosestByStations(stationId,closestBy);
+        List<AirportInfo> ret = stationService.getClosestByAirports(stationId,closestBy);
 
         return ResponseEntity.ok(new NasaAwcResponse<>(ret,null));
     }
