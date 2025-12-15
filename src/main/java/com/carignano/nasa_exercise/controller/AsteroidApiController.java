@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,7 @@ import java.util.List;
 @Validated
 @RequestMapping("api/asteroids")
 @RequiredArgsConstructor
+@PreAuthorize("hasRole('ADMIN')")
 public class AsteroidApiController {
 
     private final IAsteroidService asteroidService;
